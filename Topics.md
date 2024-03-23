@@ -1,0 +1,116 @@
+### GITHUB
+
+-   Git Basics
+    -   Initialization (`git init`)
+    -   Cloning Repositories (`git clone`)
+    -   Tracking Files
+    -   Editing Files
+    -   Recursive Add
+    -   Backing Out Changes
+    -   Renaming Files
+    -   Moving Files
+    -   Deleting Files
+    -   Ignoring Unwanted Files and Folders
+-   Branching and Merging
+    -   Branches
+    -   Feature Branches
+    -   Pulling Changes and Merging Branches
+    -   Pull Command
+    -   Merge Conflicts
+    -   Solving Merge Conflicts
+    -   Deleting Merged and Unmerged Branches
+    -   Pushing Changes
+-   Rebasing
+    -   Rebasing
+    -   Rebasing Merge Conflicts
+    -   Difference Between Merge and Rebase
+-   Others
+    -   Diff
+    -   Stash
+    -   Restore
+    -   Commits
+    -   Checkout
+    -   HEAD
+    -   Tagging
+    -   Releases
+    -   Squash
+    -   Revert
+    -   Reset
+    -   Workflows
+    -   Git and GitHub Workflows
+    -   Git Alias
+    -   History
+    -   Cleanup and Back to Origin (GitHub)
+
+### Algorithm
+
+-   Algorithm Complexity
+    -   Different Complexities
+-   Sorting Algorithms
+    -   Bubble Sort
+    -   Quick Sort
+    -   Merge Sort
+-   Fundamental Data Structures
+    -   Hash Tables
+    -   Binary Search Trees (BST)
+        -   Traversing BST
+-   Greedy Algorithm
+-   Divide and Conquer Algorithm
+-   Dynamic Programming
+-   String Algorithms
+    -   Naive Search Algorithm
+    -   Boyer-Moore String Searching Algorithm
+    -   Other String Matching Algorithms
+-   Graph Algorithms
+    -   Graphs
+    -   Traversing Graphs
+    -   Calculating Shortest Paths
+-   Prime Numbers in Algorithms
+
+### JAVA
+
+-   Java Ecosystem
+-   Basics
+    -   Packages
+    -   Variables
+    -   Data Types
+        -   Integral Data Types
+        -   Type Casting
+    -   Conditional Statements
+    -   Looping Constructs
+-   Object-Oriented Principles
+    -   Classes and Objects
+    -   Constructors
+    -   `this` Keyword
+    -   Inheritance
+    -   Overloading
+        -   Constructor Overloading
+    -   Polymorphism
+        -   Overriding
+    -   Abstract Classes and Methods
+-   Annotations
+-   References
+-   Interfaces
+    -   Use Case: Listeners
+-   Autoboxing and Unboxing
+-   Data Structures and Algorithms
+    -   Array Class
+    -   Strings
+    -   Reading Data from Files
+-   Java Collection Framework
+    -   Generics
+    -   Collection
+        -   Properties of Collection
+    -   Linked List
+    -   Enumerations
+    -   Set and Uniqueness in Set
+-   Exceptions
+    -   Motivation Behind Exceptions
+    -   Exception Sources
+    -   Exception Mechanics
+-   JVM
+    -   Why Use JVM
+-   JDK
+-   Class Organisation with Packages
+-   Java Class Library
+-   Running JVM on Command Line
