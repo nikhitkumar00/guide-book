@@ -42,6 +42,16 @@
     -   History
     -   Cleanup and Back to Origin (GitHub)
 
+-   Github Actions
+    -   GitHub Actions
+    -   GitHub Actions Workflow Components -Events
+    -   GitHub Actions Workflow Components -Job, Step, Runner
+    -   Running the Workflow
+    -   Environment variables
+    -   Github runners
+    -   Infrastructure as Code
+    -   Continuous integration
+
 ### Algorithm
 
 -   Algorithm Complexity
