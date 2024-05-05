@@ -651,3 +651,190 @@ JSON supports the following data types:
 ```
 
 JSON is commonly used in web development for transmitting data between a server and a web application, such as in AJAX requests and RESTful APIs.
+
+### Java Collections Framework
+
+Java Collections Framework is a set of classes and interfaces in Java that provide reusable, high-performance data structures and algorithms. It includes implementations for storing, manipulating, and accessing groups of objects. Here's an overview:
+
+---
+
+### Core Interfaces
+
+These interfaces define the basic behaviors of collections:
+
+#### 1. **List**
+
+A dynamic array that allows duplicate elements and maintains insertion order.
+
+| Method       | Description                                        |
+|--------------|----------------------------------------------------|
+| `add(E e)`   | Appends the specified element to the end of this list. |
+| `get(int index)` | Returns the element at the specified position in this list. |
+| `remove(int index)` | Removes the element at the specified position in this list. |
+
+#### 2. **Set**
+
+A collection that does not allow duplicate elements.
+
+| Method       | Description                                        |
+|--------------|----------------------------------------------------|
+| `add(E e)`   | Adds the specified element to this set if it is not already present. |
+| `contains(Object o)` | Returns true if this set contains the specified element. |
+| `remove(Object o)` | Removes the specified element from this set if it is present. |
+
+#### 3. **Map**
+
+An object that maps keys to values. A key is an object that you use to retrieve a value at a later date.
+
+| Method       | Description                                        |
+|--------------|----------------------------------------------------|
+| `put(K key, V value)` | Associates the specified value with the specified key in this map. |
+| `get(Object key)` | Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. |
+| `remove(Object key)` | Removes the mapping for the specified key from this map if present. |
+
+---
+
+### Core Implementations
+
+Java provides several implementations of these interfaces:
+
+#### 1. **ArrayList**
+
+Resizable-array implementation of the List interface.
+
+```java
+List<String> list = new ArrayList<>();
+list.add("Hello");
+list.add("World");
+```
+
+#### 2. **HashSet**
+
+Implements Set interface, backed by a hash table (actually a HashMap instance).
+
+```java
+Set<String> set = new HashSet<>();
+set.add("Apple");
+set.add("Banana");
+```
+
+#### 3. **HashMap**
+
+Implements Map interface, stores key-value pairs.
+
+```java
+Map<String, Integer> map = new HashMap<>();
+map.put("one", 1);
+map.put("two", 2);
+```
+
+---
+
+### Utility Classes
+
+Java Collections Framework includes utility classes for manipulating collections:
+
+#### 1. **Collections**
+
+Provides static methods for sorting, searching, reversing, and synchronizing collections.
+
+```java
+List<Integer> numbers = Arrays.asList(3, 1, 2);
+Collections.sort(numbers);
+```
+
+#### 2. **Arrays**
+
+Contains various methods for manipulating arrays (which are not technically part of the Collections Framework, but often used in conjunction with collections).
+
+```java
+int[] arr = {3, 1, 2};
+Arrays.sort(arr);
+```
+
+---
+
+### Specialized Collections
+
+Java provides specialized collections to meet specific needs:
+
+#### 1. **LinkedList**
+
+Doubly-linked list implementation of the List and Deque interfaces.
+
+```java
+LinkedList<String> linkedList = new LinkedList<>();
+linkedList.add("First");
+linkedList.add("Second");
+```
+
+#### 2. **TreeSet**
+
+Implements the Set interface using a tree.
+
+```java
+Set<String> treeSet = new TreeSet<>();
+treeSet.add("C");
+treeSet.add("A");
+treeSet.add("B");
+```
+
+#### 3. **TreeMap**
+
+Implements the Map interface using a Red-Black tree.
+
+```java
+Map<String, Integer> treeMap = new TreeMap<>();
+treeMap.put("one", 1);
+treeMap.put("two", 2);
+```
+
+---
+
+### Methods and Operations
+
+Java Collections Framework provides various methods and operations to work with collections efficiently:
+
+#### 1. **Iteration**
+
+Looping through elements in a collection using iterators or enhanced for loop.
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3);
+for (Integer num : numbers) {
+    System.out.println(num);
+}
+```
+
+#### 2. **Filtering**
+
+Filtering elements based on certain criteria using streams.
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> evenNumbers = numbers.stream()
+                                    .filter(n -> n % 2 == 0)
+                                    .collect(Collectors.toList());
+```
+
+#### 3. **Sorting**
+
+Sorting elements using `Collections.sort()` method or stream API.
+
+```java
+List<Integer> numbers = Arrays.asList(3, 1, 2);
+Collections.sort(numbers);
+```
+
+#### 4. **Searching**
+
+Searching for elements in a collection using methods like `contains()` or `indexOf()`.
+
+```java
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+if (names.contains("Bob")) {
+    System.out.println("Bob is in the list.");
+}
+```
+
+---
