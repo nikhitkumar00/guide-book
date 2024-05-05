@@ -1,0 +1,653 @@
+# Java
+
+## Creating Objects, Class, and Instance Variables
+
+In Java, an object is an instance of a class. To create an object, you use the `new` keyword followed by the class name and parentheses. Here's an example:
+
+```java
+// Creating an object of class MyClass
+MyClass obj = new MyClass();
+```
+
+A class is a blueprint for creating objects. It defines the properties and behaviors that objects of the class will have.
+
+Instance variables are variables declared within a class but outside any method. Each object of the class has its own copy of instance variables.
+
+```java
+public class MyClass {
+    // Instance variables
+    int x;
+    String str;
+}
+```
+
+## Working with Constructors
+
+Constructors are special methods used for initializing objects. They have the same name as the class and are invoked automatically when an object is created. Constructors can initialize instance variables and perform any setup required.
+
+```java
+public class MyClass {
+    int x;
+
+    // Constructor
+    public MyClass(int value) {
+        x = value;
+    }
+}
+```
+
+## Types of Constructors
+
+1. **Default Constructor**: Has no parameters.
+2. **Parameterized Constructor**: Accepts parameters to initialize instance variables.
+3. **Copy Constructor**: Constructs a new object by copying the values of an existing object.
+
+```java
+public class MyClass {
+    int x;
+
+    // Default Constructor
+    public MyClass() {
+        x = 0;
+    }
+
+    // Parameterized Constructor
+    public MyClass(int value) {
+        x = value;
+    }
+
+    // Copy Constructor
+    public MyClass(MyClass obj) {
+        x = obj.x;
+    }
+}
+```
+
+## Introduction and Types of Inheritance
+
+Inheritance is a mechanism in Java where a new class inherits properties and behaviors from an existing class. It promotes code reusability and establishes a relationship between classes.
+
+### Single and Multilevel Inheritance
+
+-   **Single Inheritance**: When a class inherits from only one superclass.
+-   **Multilevel Inheritance**: When a class inherits from a superclass, and that superclass itself inherits from another superclass.
+
+```java
+// Single Inheritance
+class A {
+    // superclass
+}
+
+class B extends A {
+    // subclass
+}
+
+// Multilevel Inheritance
+class A {
+    // superclass
+}
+
+class B extends A {
+    // subclass
+}
+
+class C extends B {
+    // subclass of B, and indirectly of A
+}
+```
+
+### Hierarchical Inheritance
+
+Hierarchical inheritance is when multiple classes inherit from the same superclass.
+
+```java
+class A {
+    // superclass
+}
+
+class B extends A {
+    // subclass
+}
+
+class C extends A {
+    // another subclass
+}
+```
+
+## Polymorphism
+
+Polymorphism allows objects of different classes to be treated as objects of a common superclass. It enables flexibility in method invocation.
+
+### Method Overloading and Method Overriding
+
+-   **Method Overloading**: When multiple methods in the same class have the same name but different parameters.
+-   **Method Overriding**: When a subclass provides a specific implementation of a method that is already defined in its superclass.
+
+```java
+class MyClass {
+    // Method Overloading
+    void display(int x) {
+        System.out.println("Number: " + x);
+    }
+
+    void display(String str) {
+        System.out.println("String: " + str);
+    }
+}
+
+class SubClass extends MyClass {
+    // Method Overriding
+    @Override
+    void display(String str) {
+        System.out.println("Overridden String: " + str);
+    }
+}
+```
+
+## Exception and Exception Handling
+
+An exception is an event that disrupts the normal flow of program execution. Exception handling allows you to gracefully handle such situations.
+
+### Introduction to Exception Handling
+
+In Java, exceptions are objects that are instances of classes derived from the `Throwable` class. Exception handling is done using `try`, `catch`, `finally`, and `throw` keywords.
+
+```java
+try {
+    // Code that may throw an exception
+} catch (ExceptionType e) {
+    // Code to handle the exception
+} finally {
+    // Code that always executes, regardless of whether an exception occurred
+}
+```
+
+### Null Pointer Exception and Stack Trace
+
+A `NullPointerException` occurs when you try to access or call methods on an object reference that is `null`.
+
+```java
+String str = null;
+System.out.println(str.length()); // Throws NullPointerException
+```
+
+The stack trace is a list of method calls that shows the sequence of calls leading to the point where the exception occurred.
+
+### Checked versus Unchecked Exception
+
+Checked exceptions are checked at compile-time, while unchecked exceptions are not.
+
+```java
+// Checked Exception
+try {
+    FileReader file = new FileReader("file.txt");
+} catch (FileNotFoundException e) {
+    e.printStackTrace();
+}
+
+// Unchecked Exception
+int result = 10 / 0; // Throws ArithmeticException at runtime
+```
+
+### Drawing a Custom Exception
+
+You can create custom exceptions by extending the `Exception` class or one of its subclasses.
+
+```java
+class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+```
+
+## Introduction to Serialization
+
+Serialization is the process of converting an object into a byte stream so that it can be easily stored, transmitted, or reconstructed later.
+
+### Writing Serialized Object
+
+To write an object to a file in serialized form, you use `ObjectOutputStream`.
+
+```java
+try {
+    FileOutputStream fileOut = new FileOutputStream("object.ser");
+    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+    out.writeObject(obj);
+    out.close();
+    fileOut.close();
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+### What Happens to an Object When It's Serialized
+
+When an object is serialized, its state is saved as a sequence of bytes, including the object's data and information about its class.
+
+### Basic Principle of Serialization
+
+Serialization is achieved by implementing the `Serializable` interface, which is a marker interface with no methods.
+
+```java
+public class MyClass implements Serializable {
+    // Class definition
+}
+```
+
+### Transient Variable
+
+A `transient` variable is a variable that should not be serialized. When an object is serialized, transient variables are not included in the serialization process.
+
+```java
+public class MyClass implements Serializable {
+    transient int sensitiveData; // This variable won't be serialized
+}
+```
+
+## Input Stream and Output Stream Deserialization
+
+Deserialization is the process of converting a byte stream back into an object.
+
+### Designing Principle of Deserialization
+
+To deserialize an object, you use `ObjectInputStream`.
+
+```java
+try {
+    FileInputStream fileIn = new FileInputStream("object.ser");
+    ObjectInputStream in = new ObjectInputStream(fileIn);
+    MyClass obj = (MyClass) in.readObject();
+    in.close();
+    fileIn.close();
+} catch (IOException | ClassNotFoundException e) {
+    e.printStackTrace();
+}
+```
+
+### Creating Connection Stream for Deserialization
+
+Connection streams, such as `FileInputStream`, `ObjectInputStream`, etc., are used to establish a connection between the Java program and the source or destination of data during deserialization.
+
+```java
+FileInputStream fileIn = new FileInputStream("object.ser");
+ObjectInputStream in = new ObjectInputStream(fileIn);
+```
+
+# Introduction to Exception Handling
+
+In Java, an exception is an event that disrupts the normal flow of program execution. Exception handling allows you to gracefully manage and recover from these unexpected events.
+
+## Null Pointer Exception and Stack Trace
+
+A `NullPointerException` occurs when you try to access or call methods on an object reference that is `null`.
+
+```java
+String str = null;
+System.out.println(str.length()); // Throws NullPointerException
+```
+
+The stack trace is a list of method calls that shows the sequence of calls leading to the point where the exception occurred.
+
+## Checked versus Unchecked Exception
+
+Checked exceptions are checked at compile-time, while unchecked exceptions are not.
+
+```java
+// Checked Exception
+try {
+    FileReader file = new FileReader("file.txt");
+} catch (FileNotFoundException e) {
+    e.printStackTrace();
+}
+
+// Unchecked Exception
+int result = 10 / 0; // Throws ArithmeticException at runtime
+```
+
+## Drawing a Custom Exception
+
+You can create custom exceptions by extending the `Exception` class or one of its subclasses.
+
+```java
+class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+```
+
+# Executing Tasks in Parallel with Fork-Join Pool
+
+The Fork-Join framework in Java provides support for executing tasks concurrently using multiple processors.
+
+## Recursive Action and Recursive Task
+
+- **RecursiveAction**: Represents a task that doesn't return any value but may have side effects.
+- **RecursiveTask**: Represents a task that returns a result.
+
+```java
+class MyRecursiveAction extends RecursiveAction {
+    // Implement compute() method
+}
+
+class MyRecursiveTask extends RecursiveTask<Integer> {
+    // Implement compute() method
+}
+```
+
+## Exception Handling and Cancelling a Task
+
+You can handle exceptions thrown during task execution and cancel tasks if necessary.
+
+```java
+try {
+    forkJoinPool.invoke(task);
+} catch (Exception e) {
+    // Handle exception
+}
+task.cancel(true); // Cancel the task
+```
+
+## Callable and Future
+
+`Callable` represents a task that can be executed asynchronously and returns a result, while `Future` represents the result of an asynchronous computation.
+
+```java
+ExecutorService executor = Executors.newCachedThreadPool();
+Callable<Integer> task = () -> {
+    // Perform some computation
+    return result;
+};
+Future<Integer> future = executor.submit(task);
+Integer result = future.get(); // Retrieve the result
+```
+
+# Thread and Thread Pool
+
+Threads in Java are lightweight processes that execute tasks concurrently.
+
+## Thread Life Cycle
+
+The life cycle of a thread includes several states: new, runnable, blocked, waiting, timed waiting, and terminated.
+
+```java
+Thread thread = new Thread(() -> {
+    // Thread logic
+});
+thread.start(); // Start the thread
+```
+
+## Thread Pool
+
+A thread pool is a collection of pre-initialized threads that can be used to execute tasks concurrently, improving performance by reusing threads.
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(5); // Create a thread pool with 5 threads
+executor.execute(() -> {
+    // Task logic
+});
+executor.shutdown(); // Shutdown the executor when no longer needed
+```
+
+# Sequential Streams and Parallel Streams
+
+Java Streams provide a way to process collections of objects in a functional-style manner.
+
+## Sequential Streams
+
+Sequential streams process elements in a single-threaded manner, one after the other.
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+int sum = numbers.stream()
+                 .filter(n -> n % 2 == 0)
+                 .mapToInt(n -> n)
+                 .sum();
+```
+
+## Parallel Streams
+
+Parallel streams enable concurrent processing of elements, leveraging multiple threads for improved performance.
+
+```java
+int sum = numbers.parallelStream()
+                 .filter(n -> n % 2 == 0)
+                 .mapToInt(n -> n)
+                 .sum();
+```
+
+# Publishers, Subscribers, and Subscriptions
+
+In Java, the Reactive Streams API provides support for asynchronous stream processing with non-blocking backpressure.
+
+## Publisher
+
+A publisher is a source of data that emits items to subscribers.
+
+## Subscriber
+
+A subscriber consumes items emitted by a publisher.
+
+## Subscription
+
+A subscription represents the relationship between a publisher and a subscriber, allowing the subscriber to request items and manage backpressure.
+
+# Thread Life Cycle, Structured Locks, and Working with Locks
+
+In Java, threads have a defined life cycle with various states, and locks are used to control access to shared resources.
+
+## Thread Life Cycle
+
+The life cycle of a thread includes states such as new, runnable, blocked, waiting, timed waiting, and terminated.
+
+## Structured Locks
+
+Java provides structured locks, such as `ReentrantLock` and `ReadWriteLock`, for controlling access to shared resources in a multithreaded environment.
+
+```java
+Lock lock = new ReentrantLock();
+lock.lock(); // Acquire the lock
+try {
+    // Critical section
+} finally {
+    lock.unlock(); // Release the lock
+}
+```
+
+## Wait, Notify, and New OnSpinWait
+
+The `wait()` and `notify()` methods are used for inter-thread communication, while `onSpinWait()` provides hints to the runtime about spinning behavior.
+
+```java
+synchronized (monitor) {
+    while (!condition) {
+        monitor.wait(); // Release the lock and wait
+    }
+    // Perform task
+    monitor.notify(); // Notify waiting threads
+}
+```
+
+# Atomic Types and Compare-and-Set Approach
+
+In Java, atomic types provide thread-safe operations without needing explicit synchronization.
+
+## Atomic Types
+
+Atomic types, such as `AtomicInteger` and `AtomicBoolean`, provide atomic operations for variables.
+
+```java
+AtomicInteger count = new AtomicInteger(0);
+count.incrementAndGet(); // Atomically increment the value
+```
+
+## Compare-and-Set Approach
+
+The compare-and-set approach is used to update a variable's value atomically if its current value matches an expected value.
+
+```java
+AtomicInteger count = new AtomicInteger(0);
+int expected = 0;
+int update = 1;
+boolean success = count.compareAndSet(expected, update);
+```
+
+# Concurrent Collections
+
+Java provides concurrent collections, which are thread-safe alternatives to traditional collections for use in multithreaded environments.
+
+## ConcurrentHashMap
+
+`ConcurrentHashMap` is a thread-safe implementation of the `Map` interface, allowing concurrent access from multiple threads without external synchronization.
+
+```java
+ConcurrentMap<String, Integer> map = new ConcurrentHashMap<>();
+map.put("key", 1); // Thread-safe operation
+```
+
+## ConcurrentLinkedQueue
+
+`ConcurrentLinkedQueue` is a thread-safe implementation of the `Queue` interface, suitable for concurrent access from multiple threads.
+
+```java
+Queue<Integer> queue = new ConcurrentLinkedQueue<>();
+queue.offer(1); // Thread-safe operation
+```
+
+# Blocking Queues and Copy-on-Write Collections
+
+Blocking queues provide additional functionality for concurrent programming, while copy-on-write collections offer thread-safe iteration.
+
+## Blocking Queues
+
+Blocking queues support operations that wait for the queue to become non-empty or non-full before proceeding.
+
+```java
+BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+queue.put(1); // Waits if the queue is full
+int value = queue.take(); // Waits if the queue is empty
+```
+
+## Copy-on-Write Collections
+
+Copy-on-write collections create a new copy of the collection whenever it's modified, ensuring thread safety during iteration.
+
+```java
+Copy
+
+OnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
+list.add(1); // Thread-safe operation
+Iterator<Integer> iterator = list.iterator(); // Thread-safe iteration
+```
+
+# What is XML?
+
+XML (eXtensible Markup Language) is a markup language that defines rules for encoding documents in a format that is both human-readable and machine-readable. It's widely used for storing and transporting data, especially on the internet.
+
+## Application of XML
+
+XML is commonly used for:
+
+- Storing and transporting structured data
+- Configuration files
+- Web services (SOAP and RESTful APIs)
+- Data interchange between different systems
+- Representing hierarchical data structures
+
+## XML Format and Structure
+
+XML documents consist of elements, attributes, and text content, organized in a hierarchical structure.
+
+### XML Elements
+
+Elements are the building blocks of an XML document and are enclosed within start and end tags.
+
+```xml
+<book>
+    <title>Java Programming</title>
+    <author>John Doe</author>
+</book>
+```
+
+### XML Attributes
+
+Attributes provide additional information about an element and are specified within the start tag.
+
+```xml
+<book category="fiction">
+    <title>Java Programming</title>
+    <author>John Doe</author>
+</book>
+```
+
+### XML Tags
+
+Tags are the combination of start and end tags that enclose elements and their content.
+
+```xml
+<book>
+    <title>Java Programming</title>
+    <author>John Doe</author>
+</book>
+```
+
+### XML Syntax
+
+XML syntax follows strict rules, including well-formedness and validity.
+
+- **Well-Formed XML**: Follows basic syntax rules, such as having a single root element and properly nested tags.
+- **Valid XML**: Follows a predefined structure defined by a Document Type Definition (DTD) or XML Schema.
+
+```xml
+<bookstore>
+    <book>
+        <title>Java Programming</title>
+        <author>John Doe</author>
+    </book>
+</bookstore>
+```
+
+### XML Naming Rules and Practices
+
+XML element and attribute names must adhere to specific naming rules:
+
+- Names must start with a letter or underscore.
+- Names can contain letters, digits, hyphens, underscores, and periods.
+- Names cannot contain spaces or special characters.
+
+```xml
+<first_name>John</first_name>
+<last_name>Doe</last_name>
+```
+
+# What is JSON?
+
+JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It's widely used for transmitting data between a server and a web application as an alternative to XML.
+
+## JSON Data Types
+
+JSON supports the following data types:
+
+- **String**: A sequence of characters enclosed in double quotes.
+- **Number**: A numeric value, which can be integer or floating-point.
+- **Boolean**: Either `true` or `false`.
+- **Array**: An ordered collection of values enclosed in square brackets.
+- **Object**: An unordered collection of key-value pairs enclosed in curly braces.
+- **Null**: Represents a null value.
+
+```json
+{
+    "name": "John",
+    "age": 30,
+    "isStudent": false,
+    "grades": [85, 90, 75],
+    "address": {
+        "street": "123 Main St",
+        "city": "New York"
+    },
+    "isActive": null
+}
+```
+
+JSON is commonly used in web development for transmitting data between a server and a web application, such as in AJAX requests and RESTful APIs.
